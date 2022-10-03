@@ -1,6 +1,7 @@
 var playerName = window.prompt("What is your robot's name?");
 var playerHP = 100;
 var playerStr = 10;
+var playerSkips = 5;
 
 var enemyName = 'Roborto';
 var enemyHP = 50;
@@ -42,7 +43,18 @@ var fight = () => {
             window.alert(playerName + " has died!");
         };
     } else if (promptFight === 'skip' || promptFight === 'SKIP' || promptFight === 'Skip') {
-        window.alert(playerName + " has chosen to skip their upcoming fight.");
+        // confirm skip
+        var confirmSkip = window.confirm("Are you sure you want to skip this fight?");
+
+        // if confirmed, skip fight
+        if (confirmSkip) {
+            window.alert(playerName + " has chosen to skip their upcoming fight.")
+            playerSkips = playerSkips - 1;
+            window.alert(playerName + " you have " + playerSkips + " skips remaining.")
+        } else {
+            fight();
+        }
+        
     } else {
         window.alert("You need to choose a valid option. Try again");
     };
